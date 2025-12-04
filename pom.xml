@@ -29,7 +29,6 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
-    	<sonar.projectKey>ANANDS9822_devops-github-poc</sonar.projectKey>
     	<sonar.organization>anands9822</sonar.organization>
     	<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
