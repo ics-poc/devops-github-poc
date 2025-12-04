@@ -35,25 +35,12 @@ jobs:
             target/classes
             target/test-classes
             target/site/jacoco/jacoco.xml
-  sonar:
-    runs-on: ubuntu-latest
-    needs: build
-    environment: sonar
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
-          cache: maven
-      # Download build artifacts from the build job
-      - name: Download Build Artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: build-artifacts
-          path: target
-      - name: SonarQube Scan
+      # ✅ Step 4: SonarCloud Scan
+      - name: SonarCloud Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn sonar:sonar -Dsonar.projectKey=demo -Dsonar.host.url=https://preposterous-dilemmatical-shemika.ngrok-free.dev -Dsonar.token=${SONAR_TOKEN} -Dsonar.java.binaries=target/classes
+        run: >
+          mvn org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+          -Dsonar.projectKey=ANANDS9822_devops-github-poc
+          -Dsonar.organization=anands9822
+          -Dsonar.host.url=https://sonarcloud.io
